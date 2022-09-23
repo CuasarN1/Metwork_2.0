@@ -1,0 +1,225 @@
+\documentclass[pdf, intlimits, unicode, S6, presentation]{beamer}
+\usepackage[T2A]{fontenc}
+\usepackage[cp1251]{inputenc}
+\usepackage[english,russian]{babel}
+
+\usetheme{Warsaw}
+\usefonttheme[onlysmall]{structurebold}
+\usefonttheme[onlymath]{serif}
+\setbeamercovered{dynamic}
+\setbeamercovered{transparent}
+\setbeamerfont{institute}{size=\normalsize}
+%\setbeamertemplate{background canvas}[vertical shading][bottom=red!10,top=blue!10]
+\setbeamertemplate{theorems}[unnumbered]
+\setbeamertemplate{footline}{}
+\setbeamertemplate{headline}{}
+\setbeamercolor{bluetext_color}{fg=blue}
+\newcommand{\bluetext}[1]{{\usebeamercolor[fg]{bluetext_color}#1}}
+
+\usepackage{beamerthemesplit}
+\usepackage{dsfont}
+\usepackage{pgfplots}
+%\usepackage{graphics}
+
+\newcounter{sli}
+\newcommand{\slnumber}{\hfill {\color{lightgray} \refstepcounter{sli}\arabic{sli}}}
+
+\title
+{Система распознавания медицинской информации для диагностики гастроэнтерологических заболеваний}
+\author{Бакалаврская работа \\
+    студента 411 группы Д.~С.~Пантелеев}
+\institute{{Саратовский государственный университет} \\
+    им.~Н.~Г.~Чернышевского \\[5pt]
+Кафедра математической кибернетики\\ и компьютерных наук\\[5pt]
+Научный руководитель: зав.~каф.~техн.~пр., доцент Батраева~И.~А.
+}
+\date{2022г.}
+
+
+\begin{document}
+
+% Титульный лист - обязательный слайд
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}
+    \frametitle{Цель работы \slnumber}
+    \LARGE
+    Разработать приложение для диагностики гастроэнтерологических заболеваний на основе нейронных сетей.
+\end{frame}
+
+\begin{frame}
+	\frametitle{Основные направления в развитии нейросетей в медицине \slnumber}
+		Можно выделить три основных направления развития нейросетевых технологий в медицине:
+			\begin{enumerate}
+				\item Малый набор данных "--- автоматизации сбора и оцифровки медицинских данных
+				\item Низкое качество данных "--- увеличение качества данных за счет разработки и внедрения алгоритмов компенсации цветовых искажений
+				\item Разметка датасета "--- количественное и качественное увеличение автоматизации разметки данных
+			\end{enumerate}
+\end{frame}
+
+% Постановка задачи - обязательный слайд
+\begin{frame}
+    \frametitle{Постановка задач \slnumber}
+    \Large
+    \begin{enumerate}
+		    \item Автоматизация разметки датасета
+		 		\item Разработка нейросетевой модели
+		 		\item Обучение нейросети с учителем
+		 		\item Нивелирование малого количества данных и повышение точности автоматического прогнозирование заболеваний
+		 		\item Создание приложения для нужд медицинских работников
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Стэк технологий \slnumber}
+		При разработке приложения был использован следующий стек технологий:
+			\begin{enumerate}
+			\item Язык программирования Python
+			\item Библиотека Tensorflow для разработки и обучения нейросети
+			\item cv2 и Pillow для работы с растровой графикой
+			\item ImageAI для внедрения нейросетевой модели в приложение
+			\item Сервис для рассылки СМС сообщений NotiSend
+			\item PySimpleGUI для создания интерфейса приложений
+			\end{enumerate}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Подготовка данных \slnumber}
+		Для автоматизации подготовки датасета были написаны следующие скрипты:
+		\begin{enumerate}
+			\item VideoToImage.py "--- скрипт для преобразования видео в набор фото
+			\item ConverterPNG.py "--- скрипт для приведения всех изображений к единому PNG формату
+			\item DuplicateRemover.py "--- скрипт дял определения и удаления дубликтов изображений
+			\item NormalLabel.py "--- скрипт для автоматической разметки класса <<Нормальная слизистая желудка>>
+			\item FolderMaker.py "--- скрипт для распределения данных на тестовые и валидационные наборы
+		\end{enumerate}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Обучение нейросети \slnumber}
+		Для обучения нейросети был арендован сервер Google:
+		\begin{enumerate}
+			\item Два видеоускорителя Nvidia Tesla K80 -- 64гб vRAM
+			\item 128гб оперативной памяти
+			\item Intel Xeon Gold 6130 -- 16 ядер, 3.7Ггц
+			\linebreak
+		\end{enumerate}
+		
+		Характеристики обучения нейросети:
+		\begin{enumerate}
+			\item 4 класса:
+				\begin{itemize}
+					\item Застойное содержимое
+					\item	Редуцированная кровь
+					\item Свежая кровь
+					\item Нормальная слизистая желудка
+				\end{itemize}
+			\item 8300 изображений на класс
+			\item Размер батч-файла -- 16
+			\item Количество эпох -- 200
+		\end{enumerate}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Приложение \slnumber}
+		\begin{table}
+		\centering
+		\begin{tabular}{cc}
+		\includegraphics[width=0.5\linewidth]{mainMac.png} &
+		\includegraphics[width=0.46\linewidth]{mainWin.png} \\
+		\includegraphics[width=0.5\linewidth]{setMac.png} &
+		\includegraphics[width=0.5\linewidth]{setWin.png} \\
+		MacOS & Windows \\
+		\end{tabular}
+		\end{table}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Интерфейс \slnumber}
+		\begin{table}
+			\centering
+			\begin{tabular}{cc}
+				\includegraphics[width=0.5\linewidth]{TextOnly.jpg} &
+				\includegraphics[width=0.5\linewidth]{ImageOnly.jpg} \\
+			\end{tabular}
+		\end{table}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Функционал \slnumber}
+		\begin{table}
+		\centering
+		\includegraphics[width=1\linewidth]{photo.png}
+		\end{table}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Функционал \slnumber}
+		\begin{table}
+		\centering
+		\includegraphics[width=1\linewidth]{video.png}
+		\end{table}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Дополнительный функционал \slnumber}
+		\begin{table}
+		\centering
+		\fboxsep=0pt
+		\begin{tabular}{cc}
+			\fbox{\includegraphics[width=0.2\linewidth]{sms.jpg}} &
+			\fbox{\includegraphics[width=0.8\linewidth]{email.jpg}}
+		\end{tabular}
+		\end{table}
+\end{frame}
+
+% Описание результатов дипломной работы - обязательный слайд
+\begin{frame}
+    \frametitle{Результаты бакалаврской работы  \slnumber}
+    \large
+   	В ходе написания работы были выполнены все поставленные задачи и достигнута цель работы:
+    \begin{enumerate}
+		    \item Проведена частичная автоматизация разметки датасета
+        \item Изучены неросетевые модели, а также возможности их применения в медицинской сфере
+        \item Была обучена нейросеть, а также значительно повышена ее точность за счет проведения трансферного обучения
+        \item Разработан программный комплекс для обработки фото и видео с фагогастродуоденоскопического оборудования с целью выявления застойного содержимого желудка и крови в различных ее формах
+        \item Были скомпилированы приложение для систем Windows и MacOS
+    \end{enumerate}    
+\end{frame}
+
+% Список литературы - обязательно
+\begin{frame}
+    \frametitle{Список использованных источников  \slnumber}
+    \small
+    \begin{thebibliography}{9}
+        \setbeamertemplate{bibliography item}[book]
+ 	        \bibitem{belicov}
+ 	            А.~В.~Беликов
+ 	           \newblock Ранняя диагностика рецидива язвенного гастродуоденального кровотечения
+ 	           \newblock 2017
+ 	         \bibitem{ocr}
+	            Нейронные сети. Эволюция
+	           \newblock Кан Каниа Алексеевич
+	           \newblock 2020
+	         \bibitem{melena}
+	         	Клинические исследования в гастроэнтерологии
+	         	\newblock Бэйтсон~Малькольм~К., Бушьер~Иэн~А.~Д
+	         	\newblock 2021
+        \setbeamertemplate{bibliography item}[online]
+	        \bibitem{computervision}
+	          \verb"https://machinelearningmastery.com/wicv/"
+	          \newblock An Introduction to Computer Vision
+    \end{thebibliography}
+\end{frame}
+
+
+
+\begin{frame}
+	\begin{beamercolorbox}[ht=7ex, dp=4ex, center, shadow=true, rounded=true]{title in head/foot}
+	\centerline{\LARGE{СПАСИБО ЗА ВНИМАНИЕ!}}
+	\end{beamercolorbox}
+\end{frame}
+
+\end{document} 

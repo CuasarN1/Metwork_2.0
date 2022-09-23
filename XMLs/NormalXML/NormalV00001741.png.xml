@@ -1,0 +1,26 @@
+<annotation>
+	<folder>images</folder>
+	<filename>NormalV00001741.png</filename>
+	<path>Unspecified</path>
+	<source>
+		<database>Unspecified</database>
+	</source>
+	<size>
+		<width>1350</width>
+		<height>1050</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>Normal</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>245</xmin>
+			<ymin>230</ymin>
+			<xmax>709</xmax>
+			<ymax>642</ymax>
+		</bndbox>
+	</object>
+</annotation>

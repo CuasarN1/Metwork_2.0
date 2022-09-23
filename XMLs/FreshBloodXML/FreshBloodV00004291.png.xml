@@ -1,0 +1,26 @@
+<annotation>
+	<folder>images</folder>
+	<filename>FreshBloodV00004291.png</filename>
+	<path>Unspecified</path>
+	<source>
+		<database>Unspecified</database>
+	</source>
+	<size>
+		<width>1920</width>
+		<height>1080</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>Fresh blood</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>582</xmin>
+			<ymin>60</ymin>
+			<xmax>1407</xmax>
+			<ymax>823</ymax>
+		</bndbox>
+	</object>
+</annotation>

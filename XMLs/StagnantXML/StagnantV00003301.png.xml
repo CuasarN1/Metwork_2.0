@@ -1,0 +1,26 @@
+<annotation>
+	<folder>images</folder>
+	<filename>StagnantV00003301.png</filename>
+	<path>Unspecified</path>
+	<source>
+		<database>Unspecified</database>
+	</source>
+	<size>
+		<width>1584</width>
+		<height>1080</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>Stagnant</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>97</xmin>
+			<ymin>294</ymin>
+			<xmax>656</xmax>
+			<ymax>1080</ymax>
+		</bndbox>
+	</object>
+</annotation>

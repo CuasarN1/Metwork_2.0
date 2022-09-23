@@ -1,0 +1,12 @@
+{
+   "image_view": true,
+   "text_view": true,
+   "phone": [
+      false,
+      "12345"
+   ],
+   "email": [
+      false,
+      "345"
+   ]
+}
