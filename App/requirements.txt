@@ -1,0 +1,6 @@
+requests~=2.31.0
+Pillow==9.2.0
+opencv-python==4.5.5
+PySimpleGUI
+py2app
+imageai==2.1.6

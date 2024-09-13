@@ -1,8 +1,6 @@
 import copy
 import platform
 import os
-
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 from imageai.Detection.Custom import CustomObjectDetection
 import PySimpleGUI as sg
 from PIL import Image, ImageTk
@@ -16,6 +14,9 @@ import requests
 import hashlib
 import cv2
 from glob import glob
+from time import time
+
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 
 class SMS:
@@ -445,6 +446,7 @@ while True:
         message, images = [], []
         bad = False
         add_text('\n')
+        begin = time()
         if ext in ('png', 'jpg', 'jpeg', 'bmp'):
             detections = detect(file, './images/temp.png')
             video_buttons(False)
@@ -505,6 +507,8 @@ while True:
                                            f'Вероятность: {str(values[1])}%')
                 else:
                     message = ['Зафиксирована здоровая слизистая желудка.']
+        end = time()
+        print('time:', end - begin)
         message = '\n' + '\n'.join(message)
         add_text(message)
         if bad:
